@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			background: #800000;
+			font-size: 50px;
+			margin: 0;
+			padding: 20px 50px;
+			color: #FFF;
+			font-family: "Times New Roman";
+		}
+		p {
+			padding: 0 20px;
+		}
+		p, li, ul, ol {
+			font-family: verdana;
+			font-size: 16px;
+			line-height: 150%;
+			text-align: justify;
+		}
+		li {
+			margin-left: 25px;
+		}
+		pre.code {
+			margin: 0 100px;
+			background: #DEDEDE;
+			font-family: courier;
+			font-size: 12px;
+			padding: 5px;
+		}
+		span.code {
+			background: #DEDEDE;
+			font-size: 12px;
+			font-family: courier;
+		}
+		.footer {
+			font-size: 12px;
+		}
+		.subfooter {
+			clear: both;
+			font-size: 8px;
+		}
+		.image {
+			float: right;
+			margin: 10px 20px 10px 20px;
+			padding: 5px;
+			background: #FFF;
+			border: 1px solid #CCC;
+		}
+		.image img {
+			border: 2px solid #FFF;
+		}
+		.image .caption {
+			font-style: italic;
+			display: block;
+			text-align: center;
+			font-size: 11px;
+		}
+	</style>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-29511072-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	<meta charset="utf-8">
+	<title>Simple EU Cookie Law Permission Prompt - Michael Wright</title>
+	<script src='./src/cprompt.min.js'>
+	/**
+		Simple Cookie Prompt
+		Idea: @panda_doodle - Coded: @michaelw90
+	**/
+	</script>
+
+</head>
+<body>
+	<h1>
+		Simple Cookie Prompt
+	</h1>
+	<a href="http://github.com/michaelw90/cPrompt"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/camo.github.com/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+	<p>
+		Starting on May 26th 2011 sites for any organisation based within the UK (even if their site is hosted overseas) must seek consent to store cookies on a user's computer, or device. Failure to comply could result in a fine up to &pound;500,000.
+	</p>
+	<p>
+		The idea is simple, a piece of JavaScript that can be thrown into any page, that can be used to automatically show the above banner to new visitors to check that you are allowed to store cookies.<br />
+		The ability is then in place so that you can simply check what stage of cookies have been accepted with the following line:
+	</p>
+	<pre class='code'>cPrompt.checkCookie()</pre>
+
+	<div class='image'>
+		<img src='http://placekitten.com/g/350/290' />
+		<span class='caption'>It's a known fact that kittens love cookies!</span>
+	</div>
+	<ol start='0'>There are 4 possible returned values:
+		<li>The user has actively opted out of all cookies on the site. <em>Shows the red notification.</em></li>
+		<li>The user has seen a warning about cookies, but neither accepted nor declined, this is classed as inferred acception. <em>Shows the blue notification</em></li> 
+		<li>The user has accepted all cookies to the site. <em>Shows the green notification.</em></li>
+		<li> The user's first visit to the site, no cookies accepted or declined. <em>Shows the yellow notifcation</em></li>
+	</ol>
+
+	<p>
+		You should only store/use cookies if the above returns either <strong>1</strong> or <strong>2</strong>. 
+	</p>
+
+	<p>
+		The user is able to close the prompt that appears, and by them doing so it will show an icon in the bottom left hand corner of the page that they can click on for more information.
+	</p>
+	<p>
+		Using it around any block of code that stores cookies is as simple as doing this:
+<pre class='code'>
+if(cPrompt.checkCookie() == 1 || cPrompt.checkCookie() == 2){
+    /**
+       Cookie Storing Code Here
+    **/
+}
+</pre>
+	</p>
+
+	<p>
+		There is an option to specify a URL to a cookie policy on your site, this can be done by using the following line of code:
+	</p>
+	<pre class='code'>cPrompt.cookieLink = 'http://mycookiepolicy.com/me.html';</pre>
+
+	<p style='float: left;' class='footer'>
+		Handcrafted by <a href='http://twitter.com/michaelw90'>@michaelw90</a> &amp; dreamt up by <a href='http://twitter.com/panda_doole'>@panda_doodle</a>
+	</p>
+	<div style='float: right; margin: 10px;'>
+	<a href="https://twitter.com/share" data-url="http://michaelwright.me/cPrompt" data-text="A simple, and effective cookie opt in system for the new EU Cookie law" class="twitter-share-button" data-via="michaelw90" data-lang="en" data-related="michaelw90">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </div>
+    <p class='subfooter'>
+    	Before using this script please ensure that it covers all of your site's requisites in terms of law compliance. I don't accept any responsibility if you get fined, eaten, attacked or bitten by the ICO or anyone else (including bears).
+    </p>
+</body>
+
+</html>
