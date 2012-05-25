@@ -61,6 +61,19 @@
 			text-align: center;
 			font-size: 11px;
 		}
+		.fork {
+			margin: 19px 20px;
+			border: 2px solid #CCC;
+			padding: 10px;
+		}
+		.fork a {
+			font-family: sans-serif;
+			color: #6942FF;
+			text-decoration: none;
+		}
+		.fork a:hover {
+			text-decoration: underline;
+		}
 	</style>
 	<script type="text/javascript">
 
@@ -85,13 +98,16 @@
 	</script>
 	<script>
 		cPrompt.cookieLink = 'http://michaelwright.me/cookies';
+		cPrompt.minimisePrompt = true;
 	</script>
 </head>
 <body>
 	<h1>
 		Simple Cookie Prompt
 	</h1>
-	<a href="http://github.com/michaelw90/cPrompt"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/camo.github.com/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+	<div style='float: right' class='fork'>
+		<a href='http://github.com/michaelw90/cPrompt'>Fork cPrompt on Github</a>
+	</div>
 	<p>
 		Starting on May 26th 2011 sites for any organisation based within the UK (even if their site is hosted overseas) must seek consent to store cookies on a user's computer, or device. Failure to comply could result in a fine up to &pound;500,000.
 	</p>
@@ -121,17 +137,24 @@
 	</p>
 	<p>
 		Using it around any block of code that stores cookies is as simple as doing this:
-<pre class='code'>
-if(cPrompt.checkCookie() == 1 || cPrompt.checkCookie() == 2){
+	<pre class='code'>
+if(cPrompt.allowCookies()){
     /**
        Cookie Storing Code Here
     **/
 }
 </pre>
 	</p>
-
 	<p>
-		There is an option to specify a URL to a cookie policy on your site, this can be done by using the following line of code:
+		There are three settings you can change/enable. The ability to hide the whole cookie prompt if the user accepts cookies on the site:
+	</p>
+	<pre class='code'>cPrompt.hideOnAccept = true;</pre>
+	<p>
+		the ability to keep the prompt minimised to the bottome left of the page at all times:
+	</p>
+	<pre class='code'>cPrompt.minimisePrompt = true;</pre>
+	<p>
+		the option to specify a URL to a cookie policy on your site, this can be done by using the following line of code:
 	</p>
 	<pre class='code'>cPrompt.cookieLink = 'http://mycookiepolicy.com/me.html';</pre>
 

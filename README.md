@@ -15,6 +15,20 @@ Who's behind it?
 
 FAQs
 ====
+![new](http://u.wimg.co.uk/new.png) **Q. Can I make it so that the prompt box hides when the user accepts cookies on the site?**<br />
+*A. You can use the following chunk of code:*
+
+`cPrompt.hideOnAccept = true;`
+
+![new](http://u.wimg.co.uk/new.png) **Q. Can I make it so that the prompt box is always minimised?**<br />
+*A.You can use the following chunk of code:*
+
+`cPrompt.minimisePrompt = true;`
+
+![new](http://u.wimg.co.uk/new.png) **Q. Is there a shorter &amp; quicker way for me to find out if the user allows cookies?**<br />
+*A.You can use the following method which returns true if the user allows cookies to be stored:*
+
+`cPrompt.allowCookies()`
 
 **Q. Does this protect me &amp; my site against the law?**<br />
 *A. The requisites of every site differ, this is only a javascript solution, the cookie that is set can be accessed in server side code. If using this code, you need to ensure that it covers your site, however every effort has been taken to try to make this as compliant as possible.*

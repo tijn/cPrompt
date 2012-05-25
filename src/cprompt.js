@@ -8,6 +8,10 @@ var cPrompt = {
 
 	n: 3,
 
+	hideOnAccept: false,
+
+	minimisePrompt: false,
+
 	cookieLink: '',
 
 	prompts: [],
@@ -24,10 +28,16 @@ var cPrompt = {
 
 			['background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAUCAIAAAAY12rUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkVCRTQ1MzgzOTUzNTExRTFBMDExQzkzQUFFRTAzRDEzIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkVCRTQ1Mzg0OTUzNTExRTFBMDExQzkzQUFFRTAzRDEzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RUJFNDUzODE5NTM1MTFFMUEwMTFDOTNBQUVFMDNEMTMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RUJFNDUzODI5NTM1MTFFMUEwMTFDOTNBQUVFMDNEMTMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5OychJAAABnElEQVR42mL88/0mA17w6+sTZnZ+ZhZe/MqY8Et/err18fGkh4fCv705Sb5Bf36+eXt7FpDx/9+f19cn/vvznUyD3t6eA9cMNPTDw5XkGPTjw5UvL/YBGSwcYqycEkDGx8frgcaRbNCbWzOBJJ+0t7zNEjnrRXzSHkDXAd1ImkFAt/z8BIpNTkFdiAgbrxpEHOhSYg3Cb/PrG1MZ/v8lyqAPD5bhCYtfX+5+erabsEG/v7/48Ggt/iTz/t4izKSAbtC7uwuAqQa/QaCk8GAZPoPgUU4QAF39+9tTHAb9/wsKSLQQ+fYM6gpUbUBXv7k1A1mEBc76+HQ7MCDRbX648ve3Jwz/fn95fQxNCpj7vr+7wClkgOIiYOC9v7sQqy9Y2ARZeRSZmDmwJ1pYUmCCR/nf3x8xlfJL+wirpQspxQgpJ2BNCkB/IAwCBhuuKP//7yfUyX9/YE8Kd+b//fMZGkbAdIwryoEW/v39mYmF8/OL/VgVAE15d3u2qGYR489Ppx4cisCa6okHig4bQV5jZuGhxBQOAR2gkwECDAApyuQsTTT/JwAAAABJRU5ErkJggg==) no-repeat 8px center; color: #d9b31f; border-color: #f5dc7d; background-color: #fcf7d9; padding: 6px 10px 10px 40px;', "This site uses cookies to store information on your computer. " + (this.cookieLink != ''? "To find out how we use them please <a style='color: #d9b31f; font-weight: bold;' href='" + this.cookieLink + "'>click here</a>." : '') + "<br /><input type='checkbox' onclick='cPrompt.doClick(1);' style='position: relative; top: 3px;' id='cPrompt_check'> <label for='cPrompt_check'>I accept cookies from this site.</label>"]
 		];
-		this.loadPrompt(this.checkCookie());
-		this.p = document.getElementById('cookie_prompt_' + this.n);
-		if(document.cookie.match(/cPrompt_hide=/)){
-			this.hidePrompt(null);
+		var cookie = this.checkCookie();
+
+		console.log(cookie, this.hideOnAccept, ((cookie == 2 && this.hideOnAccept) || cookie != 2));
+
+		if((cookie == 2 && !this.hideOnAccept) || cookie != 2){
+			this.loadPrompt(cookie);
+			this.p = document.getElementById('cookie_prompt_' + this.n);
+			if(document.cookie.match(/cPrompt_hide=/) || this.minimisePrompt){
+				this.hidePrompt(null);
+			}
 		}
 	},
 	checkCookie: function(){
@@ -66,8 +76,8 @@ var cPrompt = {
 	},
 
 	hidePrompt: function(e){
-		this.saveCookie('hide', 1);
 		if(e != null){
+			this.saveCookie('hide', 1);
 			e.stopPropagation();
 		}
 		var h = this.p;
@@ -92,6 +102,10 @@ var cPrompt = {
 		this.saveCookie('useCookies', (type == 0? 0 : 2));
 		this.p.style.display = 'none';
 		location.reload(true);
+	},
+
+	allowCookies: function(){
+		return (cPrompt.checkCookie() == 1 || cPrompt.checkCookie() == 2);
 	}
 }
 if(document.addEventListener){
