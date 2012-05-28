@@ -30,7 +30,9 @@ var cPrompt = {
 		];
 		var cookie = this.checkCookie();
 
-		console.log(cookie, this.hideOnAccept, ((cookie == 2 && this.hideOnAccept) || cookie != 2));
+		if(window.console){
+			console.log(cookie, this.hideOnAccept, ((cookie == 2 && this.hideOnAccept) || cookie != 2));
+		}
 
 		if((cookie == 2 && !this.hideOnAccept) || cookie != 2){
 			this.loadPrompt(cookie);
@@ -56,7 +58,9 @@ var cPrompt = {
 			this.saveCookie('useCookies', 1);
 		}
 		if(n > 3 || n < 0){
-			console.log('Error: Undefined num (' + n + ')');
+			if(window.console){
+				console.log('Error: Undefined num (' + n + ')');
+			}
 		}else{
 			this.n = n;
 			var h = document.createElement('div');
