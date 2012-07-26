@@ -65,8 +65,8 @@ var cPrompt = {
 			this.n = n;
 			var h = document.createElement('div');
 			with(h){
-				innerHTML = this.prompts[n][1] + "<a style='float: right; font-weight: bold;' onclick='cPrompt.hidePrompt(event)'>X</a>";
-				style.cssText = 'font-family: sans-serif; font-size: 11px; border: solid 1px; border-left: solid 3px;' + this.prompts[n][0];
+				innerHTML = this.prompts[n][1] + "<a style='float: right; font-weight: bold; color: #333;' class='close' onclick='cPrompt.hidePrompt(event)'>×</a>";
+				style.cssText = 'font-family: sans-serif; border: solid 1px; border-left: solid 3px;' + this.prompts[n][0];
 				className = 'cookie_box';
 				id = 'cookie_prompt_' + n;
 			}
@@ -86,7 +86,7 @@ var cPrompt = {
 		}
 		var h = this.p;
 		with(h){
-			style.cssText = this.prompts[this.n][0] + 'width: 0; background-position: 3px center; padding: 15px; border: 1px solid; font-family: sans-serif; font-size: 11px;';
+			style.cssText = this.prompts[this.n][0] + 'width: 0; background-position: 3px center; padding: 15px; border: 1px solid; font-family: sans-serif;';
 			innerHTML = '';
 			h.onclick = function(){
 				cPrompt.reshow();
@@ -97,8 +97,8 @@ var cPrompt = {
 
 	reshow: function(){
 		with(this.p){
-			style.cssText = 'font-family: sans-serif; font-size: 11px; border: solid 1px; border-left: solid 3px;' + this.prompts[this.n][0];
-			innerHTML = this.prompts[this.n][1] + "<a style='float: right; font-weight: bold;' onclick='cPrompt.hidePrompt(event)'>X</a>";
+			style.cssText = 'font-family: sans-serif; border: solid 1px; border-left: solid 3px;' + this.prompts[this.n][0];
+			innerHTML = this.prompts[this.n][1] + "<a style='float: right; font-weight: bold; color: #333;' class='close' onclick='cPrompt.hidePrompt(event)'>×</a>";
 		}
 	},
 
