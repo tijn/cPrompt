@@ -76,7 +76,7 @@ var cPrompt = {
 	},
 
 	saveCookie: function(c, v){
-		document.cookie = "cPrompt_" + c + "=" + v + ";expires=" + (new Date()).toGMTString().replace(/\d{4}/, '2050');
+		document.cookie = "cPrompt_" + c + "=" + v + ";path=/" + ";expires=" + (new Date()).toGMTString().replace(/\d{4}/, '2050');
 	},
 
 	hidePrompt: function(e){
