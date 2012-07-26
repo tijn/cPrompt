@@ -8,7 +8,7 @@ var cPrompt = {
 
 	n: 3,
 
-	hideOnAccept: false,
+	hideOnAccept: true,
 
 	minimisePrompt: false,
 
